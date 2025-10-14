@@ -19,10 +19,10 @@ import { AnimatedFAQ } from "../../components/animations/AnimatedFAQ";
 
 import p1 from "../../assets/p1.jpeg";
 import p2 from "../../assets/p2.jpeg";
-import p3 from "../../assets/p3.jpeg";
+import p3 from "../../assets/p3.jpg";
 import p4 from "../../assets/p4.jpeg";
 import p5 from "../../assets/p5.jpeg";
-import p6 from "../../assets/p6.jpg";
+import p6 from "../../assets/p6.jpeg";
 import model from "../../assets/model.jpg";
 
 export const Desktop = (): JSX.Element => {
@@ -41,24 +41,24 @@ const navItems = [
 
   // Why our products section data
   const whyOurProducts = [
-    {
-      number: "01",
-      title: "Bio Ingredients",
-      description:
-        "Get naturally beautiful and transform with our bio ingredients creams for healthy, radiant skin.",
-    },
-    {
-      number: "02",
-      title: "Everything Natural",
-      description:
-        "Pure ingredients for pure skin. The Perfect solution for your skin care needs.",
-    },
-    {
-      number: "03",
-      title: "All Handmade",
-      description:
-        "Made with love and care. Just for you. Give your skin the tender loving care it deserves.",
-    },
+ {
+    number: "01",
+    title: "Share Surplus Meals",
+    description:
+      "Restaurants post their extra food along with live location and details, making it easy for volunteers and NGOs to find and collect it.",
+  },
+  {
+    number: "02",
+    title: "Instant Volunteer Pick-Up",
+    description:
+      "Verified volunteers and NGOs receive real-time notifications, ensuring timely and safe pick-up of surplus meals without any waste.",
+  },
+  {
+    number: "03",
+    title: "Deliver & Delight",
+    description:
+      "Meals are delivered to people in need, reducing food waste and creating smiles. Each shared meal helps build a hunger-free, waste-free community.",
+  },
   ];
 
   // Product data
@@ -345,22 +345,23 @@ Together, we fight food waste and feed communities, one meal at a time.
     <Badge className="bg-[#fefff4] text-[#2d3b36] rounded-[100px] border border-solid border-[#2d3b36] h-[50px] md:h-[60px] px-6 md:px-[58px] flex items-center w-fit">
       <div className="w-4 md:w-5 h-4 md:h-5 rounded-[10px] bg-[#2d3b36] mr-3 md:mr-4"></div>
       <span className="[font-family:'Inter',Helvetica] font-normal text-lg md:text-xl">
-       
+       How It Works
       </span>
     </Badge>
 
-     {/* Your skin deserves section */}
-          <div className="mt-8 md:mt-[60px]">
-            <h2 className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-3xl md:text-5xl lg:text-6xl tracking-[-1.20px] leading-[normal]">
-              YOUR SKIN DESERVES <br />
-              THE BEST CARE.
-            </h2>
-            <p className="mt-4 md:mt-6 [font-family:'Inter',Helvetica] font-normal text-[#525349] text-base md:text-lg tracking-[-0.36px] leading-6">
-              Discover a curated collection of skincare products designed to
-              rejuvenate, protect, and pamper your skin. Explore our range
-              crafted with love backed by science, and inspired by nature.
-            </p>
-          </div>
+{/* Your community deserves section */}
+<div className="mt-8 md:mt-[60px]">
+  <h2 className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-3xl md:text-5xl lg:text-6xl tracking-[-1.20px] leading-[normal]">
+    EVERY MEAL DESERVES <br />
+    TO MAKE AN IMPACT.
+  </h2>
+  <p className="mt-4 md:mt-6 [font-family:'Inter',Helvetica] font-normal text-[#525349] text-base md:text-lg tracking-[-0.36px] leading-6">
+    Join our smart food-sharing platform to connect restaurants with volunteers and NGOs, 
+    ensuring surplus meals reach those who need them most. Together, we reduce food waste 
+    and nourish communities every day.
+  </p>
+</div>
+
 
     <div className="mt-8 md:mt-[60px] space-y-8 md:space-y-[60px]">
       {whyOurProducts.map((item, index) => (
@@ -404,16 +405,16 @@ Together, we fight food waste and feed communities, one meal at a time.
       <Award className="w-4 md:w-6 h-4 md:h-6 text-white" />
     </div>
     <div className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-sm md:text-xl leading-tight">
-    Best Skin Care Product 
-      <br />
-      Award Wining
+  Turning Surplus Food 
+  <br />
+  Into Smiles
     </div>
   </div>
     </div>
 
     {/* Footer Text */}
     <div className="absolute bottom-2 md:bottom-4 w-full px-4 lg:px-0 flex justify-between text-[#2d3b36] text-lg md:text-xl font-normal">
-      <span>SINCE 2001</span>
+      
       <span className="cursor-pointer hover:text-[#2d3b36]/70 transition-colors">
         LEARN MORE
       </span>
