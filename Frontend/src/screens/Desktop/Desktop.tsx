@@ -318,20 +318,21 @@ Together, we fight food waste and feed communities, one meal at a time.
               />
             </div>
             <div className="ml-3 md:ml-4 [font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-sm md:text-lg lg:text-xl tracking-[0] leading-[normal]">
-              While giving you an invigorating cleansing experience.
+          Providing a simple way to share meals and make an impact.
             </div>
           </div>
         </section>
 
         {/* Main content section */}
         <section className="bg-[#fefff4] pt-12 md:pt-[99px] px-4 md:px-8 lg:px-[100px]">
-          {/* Introduction text with animation */}
-          <div className="mb-8 md:mb-[60px]">
-            <TextReveal
-              text="Experience the ultimate in skincare with our expertly formulated products, crafted to nourish, protect, and rejuvenate your skin. Combining the finest natural ingredients with advanced science, our collection ensures every skin type can achieve a radiant, healthy glow. Embrace your beauty with confidence every day. Experience the ultimate in skincare with our expertly formulated products, crafted to nourish, protect, and rejuvenate your skin."
-              className="[font-family:'Inter',Helvetica] font-normal text-[24px] md:text-[36px] lg:text-[53px] tracking-[-1.86px] leading-[1.4] md:leading-[78px]"
-            />
-          </div>
+         {/* Introduction text with animation */}
+<div className="mb-8 md:mb-[60px]">
+  <TextReveal
+    text="Experience the joy of turning surplus food into meals for those in need. Our platform connects restaurants, NGOs, and volunteers seamlessly, ensuring every extra bite reaches people who matter most. With real-time tracking and verified pickups, we make food donation simple, safe, and impactful. Join us in reducing waste, feeding communities, and making every meal count."
+    className="[font-family:'Inter',Helvetica] font-normal text-[24px] md:text-[36px] lg:text-[53px] tracking-[2px] leading-[1.4] md:leading-[78px]"
+  />
+</div>
+
 
          
 
@@ -344,7 +345,7 @@ Together, we fight food waste and feed communities, one meal at a time.
     <Badge className="bg-[#fefff4] text-[#2d3b36] rounded-[100px] border border-solid border-[#2d3b36] h-[50px] md:h-[60px] px-6 md:px-[58px] flex items-center w-fit">
       <div className="w-4 md:w-5 h-4 md:h-5 rounded-[10px] bg-[#2d3b36] mr-3 md:mr-4"></div>
       <span className="[font-family:'Inter',Helvetica] font-normal text-lg md:text-xl">
-        Why Our Products
+       
       </span>
     </Badge>
 
