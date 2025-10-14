@@ -18,7 +18,7 @@ import { ProductFilter } from "../../components/animations/ProductFilter";
 import { AnimatedFAQ } from "../../components/animations/AnimatedFAQ";
 
 import p1 from "../../assets/p1.jpeg";
-import p2 from "../../assets/p2.jpg";
+import p2 from "../../assets/p2.jpeg";
 import p3 from "../../assets/p3.jpeg";
 import p4 from "../../assets/p4.jpeg";
 import p5 from "../../assets/p5.jpeg";
@@ -228,7 +228,7 @@ export const Desktop = (): JSX.Element => {
           <div className="fixed inset-0 bg-[#eff5e1] z-50 md:hidden">
             <div className="flex justify-between items-center px-4 py-6">
               <div className="font-extrabold text-[#2d3b36] text-2xl [font-family:'Inter',Helvetica]">
-                SKINCARE
+                ECOMEAL
               </div>
               <Button
                 variant="ghost"
@@ -283,21 +283,21 @@ export const Desktop = (): JSX.Element => {
         <section className="px-4 md:px-8 lg:px-[100px] mt-8 md:mt-[100px] flex flex-col lg:flex-row justify-between items-center lg:items-start space-y-8 lg:space-y-0">
           <div className="max-w-[335px] text-center lg:text-left order-2 lg:order-1">
             <h1 className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-lg md:text-xl tracking-[0] leading-[normal]">
-              Transform your skincare routine with premium products that
-              restore, protect, and enhance your natural glow every day.
+        Turning surplus meals into hope by connecting restaurants, NGOs, and volunteers in real-time.
+Together, we fight food waste and feed communities, one meal at a time.
             </h1>
             <Button className="mt-6 md:mt-10 bg-[#2d3b36] text-[#eff5e1] rounded-[100px] h-[50px] md:h-[60px] w-[160px] md:w-[180px] hover:bg-[#2d3b36]/90 transition-all duration-300 transform hover:scale-105">
               <span className="[font-family:'Inter',Helvetica] font-normal text-lg md:text-xl">
-                Shop Now
+                Learn More
               </span>
             </Button>
           </div>
 
           <div className="relative text-center order-1 lg:order-2">
             <h2 className="[font-family:'Inter',Helvetica] font-bold text-[#2d3b36] text-[60px] md:text-[80px] lg:text-[100px] tracking-[-3.00px] leading-[0.9]">
-              GLOW
+              Turning Leftovers 
               <br />
-              NATUR-ALLY
+              into Lifesavers
             </h2>
           </div>
 
