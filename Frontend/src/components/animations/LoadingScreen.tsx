@@ -25,7 +25,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="font-extrabold text-[#2d3b36] text-4xl md:text-6xl [font-family:'Inter',Helvetica] mb-8 animate-pulse">
           ECOMEAL
         </div>
-        <div className="w-64 h-1 bg-[#2d3b3620] rounded-full overflow-hidden">
+        <div className="w-80 h-1 bg-[#2d3b3620] rounded-full overflow-hidden">
           <div 
             className="h-full bg-[#2d3b36] rounded-full transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
