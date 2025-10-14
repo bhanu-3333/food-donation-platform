@@ -32,12 +32,12 @@ export const Desktop = (): JSX.Element => {
   const [activeCategory, setActiveCategory] = useState("NEW ARRIVAL");
 
   // Navigation items
-  const navItems = [
-    { name: "All Products", href: "#" },
-    { name: "Serum", href: "#" },
-    { name: "Sunscreen", href: "#" },
-    { name: "Bundle", href: "#" },
-  ];
+const navItems = [
+  { name: "Home", href: "#" },
+  { name: "Our Process", href: "#" },     // Instead of "How It Works"
+  { name: "FAQs", href: "#" },           // Capitalized & formal
+  { name: "Get in Touch", href: "#" },   // Instead of "contact"
+];
 
   // Why our products section data
   const whyOurProducts = [
@@ -179,26 +179,8 @@ export const Desktop = (): JSX.Element => {
           {/* Desktop Icons */}
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="w-10 h-10 bg-[#f8fee5] rounded-[20px] hover:bg-[#f0f7d4] transition-colors"
-              >
-                <ShoppingBagIcon className="w-5 h-5" />
-              </Button>
-              <span className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-lg lg:text-xl tracking-[-1.00px] ml-2">
-                cart (1)
-              </span>
-            </div>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="w-10 h-10 bg-[#f8fee5] rounded-[20px] hover:bg-[#f0f7d4] transition-colors"
-            >
-              <HeartIcon className="w-5 h-5" />
-            </Button>
-
+            
+           
             <Button
               variant="ghost"
               size="icon"
@@ -206,6 +188,11 @@ export const Desktop = (): JSX.Element => {
             >
               <UserIcon className="w-5 h-5" />
             </Button>
+              <span className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-lg lg:text-xl tracking-[-1.00px] ml-2">
+                LOGIN
+              </span>
+            </div>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -313,7 +300,7 @@ Together, we fight food waste and feed communities, one meal at a time.
         {/* Large SKINCARE text with image */}
         <section className="relative mt-16 md:mt-[100px] h-[400px] md:h-[685px] overflow-hidden">
           <div className="absolute top-[200px] md:top-[410px] left-0 font-extrabold text-[#2d3b36] text-[120px] md:text-[200px] lg:text-[378px] [font-family:'Inter',Helvetica] tracking-[0] leading-[normal] whitespace-nowrap opacity-20 md:opacity-100">
-            SKINCARE
+            ECOMEAL
           </div>
 
           <img
