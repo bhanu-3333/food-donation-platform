@@ -14,16 +14,16 @@ import { Button } from "../../components/ui/button";
 import { LoadingScreen } from "../../components/animations/LoadingScreen";
 import { TextReveal } from "../../components/animations/TextReveal";
 import { ProductCarousel } from "../../components/animations/ProductCarousel";
-import { ProductFilter } from "../../components/animations/ProductFilter";
 import { AnimatedFAQ } from "../../components/animations/AnimatedFAQ";
 
 import p1 from "../../assets/p1.jpeg";
 import p2 from "../../assets/p2.jpeg";
-import p3 from "../../assets/p3.jpg";
+import p3 from "../../assets/p3.jpeg";
 import p4 from "../../assets/p4.jpeg";
 import p5 from "../../assets/p5.jpeg";
-import p6 from "../../assets/p6.jpeg";
-import model from "../../assets/model.jpg";
+import p6 from "../../assets/p6.jpg";
+import p7 from "../../assets/p7.jpg";
+import model from "../../assets/model.jpeg";
 
 export const Desktop = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,66 +63,62 @@ const navItems = [
 
   // Product data
   const products = [
-    {
-      id: 1,
-      name: "ALYA SKIN CLEANSER.",
-      price: "FROM $29.99",
-      image: p3,
-      category: "CLEANSING",
-    },
-    {
-      id: 2,
-      name: "RITUAL OF SAKURA.",
-      price: "FROM $27.99",
-      image: p4,
-      category: "NEW ARRIVAL",
-    },
-    {
-      id: 3,
-      name: "THE BODY LOTION.",
-      price: "FROM $19.99",
-      image: p5,
-      category: "ANTI AGING",
-    },
+{
+  id: 1,
+  name: "Leftover Food Donation",
+  image: p3,
+  category: "HOTEL CONTRIBUTIONS",
+},
+{
+  id: 2,
+  name: "Volunteer Food Pickup",
+  image: p4,
+  category: "COMMUNITY SERVICE",
+},
+{
+  id: 3,
+  name: "Meals Delivered with Care",
+  image: p5,
+  category: "TRUST & TRANSPARENCY",
+},
+
+
   ];
 
-  // Filter categories
-  const categories = ["NEW ARRIVAL", "CLEANSING", "ACNE FIGHTER", "ANTI AGING"];
-
-  // Filter products based on active category
-  const filteredProducts = products.filter((product) =>
-    activeCategory === "NEW ARRIVAL"
-      ? true
-      : product.category === activeCategory
-  );
+  
 
   // FAQ data
   const faqs = [
-    {
-      question: "Are your products cruelty-free?",
-      answer:
-        "Absolutely! All our products are cruelty-free, and most are vegan. Check individual product details for specifics.",
-    },
-    {
-      question: "Are your products safe for sensitive skin?",
-      answer:
-        "Yes, our products are formulated with gentle, natural ingredients that are suitable for sensitive skin. We recommend doing a patch test before first use.",
-    },
-    {
-      question: "What's your return policy?",
-      answer:
-        "We offer a 30-day return policy for unopened products. If you're not satisfied with your purchase, please contact our customer service team.",
-    },
-    {
-      question: "Do you ship internationally?",
-      answer:
-        "Yes, we ship worldwide! Shipping costs and delivery times vary by location. Free shipping is available for orders over $50 within the US.",
-    },
-    {
-      question: "How do I choose the right product?",
-      answer:
-        "Our skincare quiz can help you find the perfect products for your skin type and concerns. You can also consult with our skincare experts via chat or email.",
-    },
+  {
+    question: "What is this platform about?",
+    answer:
+      "Our platform helps restaurants and NGOs/volunteers share leftover food safely with people in need — reducing food waste and hunger.",
+  },
+  {
+    question: "How can a restaurant donate food?",
+    answer:
+      "Restaurants sign up, post details about leftover food, and share their live location. Verified volunteers can then see the posts and come to pick it up.",
+  },
+  {
+    question: "Who can become a volunteer?",
+    answer:
+      "Only verified NGO members or individuals approved by registered organizations can volunteer. This keeps the process safe and trustworthy.",
+  },
+  {
+    question: "How do you verify NGOs and volunteers?",
+    answer:
+      "We check NGO registration certificates and issue digital ID badges with QR codes. Restaurants can scan these before handing over food.",
+  },
+  {
+    question: "Is there any cost to use the platform?",
+    answer:
+      "Nope! The platform is completely free for both restaurants and volunteers.",
+  },
+  {
+    question: "What happens after a volunteer picks up the food?",
+    answer:
+      "The volunteer marks the pickup as 'Completed.' The system logs it in your history and updates your impact statistics.",
+  },
   ];
 
   // Footer links
@@ -429,15 +425,15 @@ Together, we fight food waste and feed communities, one meal at a time.
               <Badge className="bg-[#fefff4] text-[#2d3b36] rounded-[100px] border border-solid border-[#2d3b36] h-[50px] md:h-[60px] px-6 md:px-[58px] flex items-center w-fit">
                 <div className="w-4 md:w-5 h-4 md:h-5 rounded-[10px] bg-[#2d3b36] mr-3 md:mr-4"></div>
                 <span className="[font-family:'Inter',Helvetica] font-normal text-lg md:text-xl whitespace-nowrap">
-                  Best Selling Products
+                  Our Services
                 </span>
               </Badge>
             </div>
 
             <h2 className="text-center [font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-3xl md:text-5xl lg:text-6xl tracking-[-1.20px] leading-[normal] mb-8 md:mb-[60px]">
-              Skincare That Brings Out
+               Meals That Nourish Lives
               <br />
-              Your Natural Radiance
+              And Reduce Food Waste
             </h2>
 
             <ProductCarousel
@@ -456,45 +452,26 @@ Together, we fight food waste and feed communities, one meal at a time.
             />
             <div className="absolute bottom-0 left-0 w-full h-[300px] md:h-[400px] rounded-[30px] [background:linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(41,51,48,1)_100%)] flex flex-col items-center justify-end pb-8 md:pb-[80px] px-4">
               <h2 className="[font-family:'Inter',Helvetica] font-normal text-[#fefff4] text-3xl md:text-5xl lg:text-[80px] text-center tracking-[-1.60px] leading-[normal] mb-6 md:mb-8">
-                Feel Beautiful Inside and Out
+                Meals That Nourish Lives
                 <br />
-                with Every Product.
+                  And Reduce Food Waste
               </h2>
               <Button className="bg-[#fefff4] text-[#2d3b36] rounded-[100px] h-[50px] md:h-[60px] w-[160px] md:w-[180px] hover:bg-[#f0f7d4] transition-all duration-300 transform hover:scale-105">
                 <span className="[font-family:'Inter',Helvetica] font-normal text-lg md:text-xl">
-                  Shop Now
+                  REGISTER
                 </span>
               </Button>
             </div>
           </div>
 
-          {/* Product categories section with filter functionality */}
-          <div className="mt-24 md:mt-[200px] text-center">
-            <h2 className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-3xl md:text-5xl lg:text-6xl text-center tracking-[-1.20px] leading-[normal] mb-8 md:mb-[60px]">
-              Feel Beautiful Inside and Out
-              <br />
-              with Every Product.
-            </h2>
-
-            <ProductFilter
-              categories={categories}
-              activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}
-            />
-
-            <ProductCarousel
-              products={filteredProducts}
-              className="mt-12 md:mt-[80px]"
-              showSliderControls={true}
-            />
-          </div>
+      
 
           {/* FAQ and Support section */}
           <div className="mt-24 md:mt-[200px] flex flex-col lg:flex-row gap-8 lg:gap-[150px] ">
             <div className="w-full lg:w-1/2 h-[400px] md:h-[600px] lg:h-[900px] relative rounded-lg lg:rounded-none overflow-hidden md:pb-12 ">
   {/* Image behind badge */}
   <img
-    src={p5}
+    src={p7}
     alt="Product"
     className="w-full h-full object-cover rounded-2xl "
   />
@@ -524,9 +501,9 @@ Together, we fight food waste and feed communities, one meal at a time.
               <h2 className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-3xl md:text-5xl lg:text-6xl tracking-[-1.20px] leading-[normal] mb-8 md:mb-[60px]">
                 Answers to Your
                 <br />
-                Skincare Questions, All
+                Food Donation Questions,
                 <br />
-                in One Place.
+                 All in One Place.
               </h2>
 
               <AnimatedFAQ faqs={faqs} />
@@ -534,55 +511,56 @@ Together, we fight food waste and feed communities, one meal at a time.
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-[#2d3b36] text-[#e7e8e0] pt-12 md:pt-[199px] px-4 md:px-8 lg:px-[100px] pb-12 md:pb-[100px] relative overflow-hidden">
-          <div className="flex flex-col md:flex-row justify-between mb-12 md:mb-[200px] space-y-8 md:space-y-0">
-            <div>
-              <h2 className="[font-family:'Inter',Helvetica] font-normal text-3xl md:text-5xl lg:text-6xl tracking-[-1.20px] leading-[normal]">
-                Join The Skincare
-                <br />
-                Community Now.
-              </h2>
-            </div>
-            <div className="text-center md:text-right">
-              <h3 className="[font-family:'Inter',Helvetica] font-normal text-xl md:text-2xl lg:text-3xl tracking-[-0.60px] leading-[normal] mb-2">
-                Get in Touch
-              </h3>
-              <p className="[font-family:'Inter',Helvetica] font-normal text-2xl md:text-4xl lg:text-6xl tracking-[-1.20px] leading-[normal] hover:text-[#eff5e1]/80 transition-colors cursor-pointer">
-                contact.skincare.com
-              </p>
-            </div>
-          </div>
+      {/* Footer */}
+<footer className="bg-[#2d3b36] text-[#e7e8e0] pt-12 md:pt-[199px] px-4 md:px-8 lg:px-[100px] pb-12 md:pb-[100px] relative overflow-hidden">
+  <div className="flex flex-col md:flex-row justify-between mb-12 md:mb-[200px] space-y-8 md:space-y-0">
+    <div>
+      <h2 className="[font-family:'Inter',Helvetica] font-normal text-3xl md:text-5xl lg:text-6xl tracking-[-1.20px] leading-[normal]">
+        Join The Food-Sharing
+        <br />
+        Community Today.
+      </h2>
+    </div>
+    <div className="text-center md:text-right">
+      <h3 className="[font-family:'Inter',Helvetica] font-normal text-xl md:text-2xl lg:text-3xl tracking-[-0.60px] leading-[normal] mb-2">
+        Get in Touch
+      </h3>
+      <p className="[font-family:'Inter',Helvetica] font-normal text-2xl md:text-4xl lg:text-6xl tracking-[-1.20px] leading-[normal] hover:text-[#eff5e1]/80 transition-colors cursor-pointer">
+        support@ecomeal.org
+      </p>
+    </div>
+  </div>
 
-          <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
-              {socialLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="[font-family:'Inter',Helvetica] font-normal text-[#eff5e1] text-lg md:text-xl tracking-[-1.00px] leading-[normal] hover:text-[#eff5e1]/70 transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-8">
-              {policyLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="[font-family:'Inter',Helvetica] font-normal text-[#eff5e1] text-lg md:text-xl tracking-[-1.00px] leading-[normal] hover:text-[#eff5e1]/70 transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
+  <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
+    <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
+      {socialLinks.map((link, index) => (
+        <a
+          key={index}
+          href="#"
+          className="[font-family:'Inter',Helvetica] font-normal text-[#eff5e1] text-lg md:text-xl tracking-[-1.00px] leading-[normal] hover:text-[#eff5e1]/70 transition-colors"
+        >
+          {link}
+        </a>
+      ))}
+    </div>
+    <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-8">
+      {policyLinks.map((link, index) => (
+        <a
+          key={index}
+          href="#"
+          className="[font-family:'Inter',Helvetica] font-normal text-[#eff5e1] text-lg md:text-xl tracking-[-1.00px] leading-[normal] hover:text-[#eff5e1]/70 transition-colors"
+        >
+          {link}
+        </a>
+      ))}
+    </div>
+  </div>
 
-          <div className="absolute bottom-0 left-0 font-bold text-[#3d4b4680] text-[120px] md:text-[250px] lg:text-[420px] [font-family:'Inter',Helvetica] tracking-[0] leading-[normal] whitespace-nowrap pointer-events-none">
-            SKINCARE
-          </div>
-        </footer>
+  <div className="absolute bottom-0 left-0 font-bold text-[#3d4b4680] text-[120px] md:text-[250px] lg:text-[420px] [font-family:'Inter',Helvetica] tracking-[0] leading-[normal] whitespace-nowrap pointer-events-none">
+    ECOMEAL
+  </div>
+</footer>
+
       </div>
     </div>
   );
