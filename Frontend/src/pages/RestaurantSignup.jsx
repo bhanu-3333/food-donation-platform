@@ -61,56 +61,274 @@ export default function RestaurantSignup() {
   }
 
   return (
-    <div className="container">
-      <div className="card" style={{ maxWidth: 720, margin: "0 auto" }}>
-        <h2>Restaurant Registration</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Restaurant Name</label>
-          <input name="restaurantName" className="input" value={form.restaurantName} onChange={handleChange} required />
-
-          <label>Owner / Manager Name</label>
-          <input name="ownerName" className="input" value={form.ownerName} onChange={handleChange} required />
-
-          <label>Contact Number</label>
-          <input name="contact" className="input" value={form.contact} onChange={handleChange} required />
-
-          <label>Email</label>
-          <input name="email" className="input" value={form.email} onChange={handleChange} type="email" required />
-
-          <label>Password</label>
-          <input name="password" className="input" value={form.password} onChange={handleChange} type="password" required />
-
-          <label>Confirm Password</label>
-          <input name="confirmPassword" className="input" value={form.confirmPassword} onChange={handleChange} type="password" required />
-
-          <label>Type of Food</label>
-          <select name="foodType" value={form.foodType} onChange={handleChange} className="input">
-            <option>Veg</option>
-            <option>Non-Veg</option>
-            <option>Both</option>
-          </select>
-
-          <label>Usual Food Availability Time</label>
-          <input name="time" className="input" placeholder="e.g., 8 PM - 10 PM" value={form.time} onChange={handleChange} />
-
-          <label>Attach Location</label>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button type="button" onClick={getCurrentLocation}>📍 Use My Current Location</button>
-            <input className="input" name="address" placeholder="Or enter address manually" value={form.address} onChange={handleChange} />
+    <div className="fixed inset-0 w-full h-full flex items-center justify-center p-4 overflow-y-auto" style={{ backgroundColor: '#eff5e1' }}>
+      <div className="w-full rounded-xl shadow-lg p-6 my-8 transition-all duration-300 hover:shadow-xl animate-fadeIn" style={{ maxWidth: 720, backgroundColor: '#fefff4', borderColor: '#2d3b36', borderWidth: '1px' }}>
+        <h2 className="text-2xl font-bold mb-4 text-center" style={{ color: '#2d3b36' }}>Restaurant Registration</h2>
+        
+        <div className="space-y-4">
+          <div className="animate-slideIn" style={{ animationDelay: '0.1s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Restaurant Name</label>
+            <input 
+              name="restaurantName" 
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+              value={form.restaurantName} 
+              onChange={handleChange} 
+              required 
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
           </div>
-          {coords.lat && <p className="small-muted">Lat: {coords.lat} — Lng: {coords.lng}</p>}
 
-          <label>Upload Restaurant Image / Logo (optional)</label>
-          <input type="file" accept="image/*" onChange={e => setImageFile(e.target.files[0])} />
-
-          <label><input type="checkbox" required /> I agree to Food Safety Terms</label>
-
-          <div style={{ marginTop: 12 }}>
-            <button style={{ padding: 10, borderRadius: 8, background: "#0a66c2", color: "white", border: "none" }}>Register Restaurant</button>
-            <button type="button" onClick={() => navigate("/")} style={{ marginLeft: 8 }}>Cancel</button>
+          <div className="animate-slideIn" style={{ animationDelay: '0.15s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Owner / Manager Name</label>
+            <input 
+              name="ownerName" 
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+              value={form.ownerName} 
+              onChange={handleChange} 
+              required 
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
           </div>
-        </form>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.2s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Contact Number</label>
+            <input 
+              name="contact" 
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+              value={form.contact} 
+              onChange={handleChange} 
+              required 
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
+          </div>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.25s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Email</label>
+            <input 
+              name="email" 
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+              value={form.email} 
+              onChange={handleChange} 
+              type="email" 
+              required 
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-slideIn" style={{ animationDelay: '0.3s' }}>
+            <div>
+              <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Password</label>
+              <input 
+                name="password" 
+                className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+                value={form.password} 
+                onChange={handleChange} 
+                type="password" 
+                required 
+                style={{ 
+                  backgroundColor: '#fefff4',
+                  borderColor: '#2d3b36',
+                  borderWidth: '1px',
+                  color: '#2d3b36'
+                }}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Confirm Password</label>
+              <input 
+                name="confirmPassword" 
+                className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+                value={form.confirmPassword} 
+                onChange={handleChange} 
+                type="password" 
+                required 
+                style={{ 
+                  backgroundColor: '#fefff4',
+                  borderColor: '#2d3b36',
+                  borderWidth: '1px',
+                  color: '#2d3b36'
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.35s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Type of Food</label>
+            <select 
+              name="foodType" 
+              value={form.foodType} 
+              onChange={handleChange} 
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2"
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            >
+              <option>Veg</option>
+              <option>Non-Veg</option>
+              <option>Both</option>
+            </select>
+          </div>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.4s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Usual Food Availability Time</label>
+            <input 
+              name="time" 
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+              placeholder="e.g., 8 PM - 10 PM" 
+              value={form.time} 
+              onChange={handleChange}
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
+          </div>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.45s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Attach Location</label>
+            <div className="flex flex-col md:flex-row gap-2">
+              <button 
+                type="button" 
+                onClick={getCurrentLocation}
+                className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 whitespace-nowrap"
+                style={{
+                  backgroundColor: '#f8fee5',
+                  color: '#2d3b36',
+                  borderColor: '#2d3b36',
+                  borderWidth: '1px'
+                }}
+              >
+                📍 Use My Current Location
+              </button>
+              <input 
+                className="flex-1 px-3 py-2 rounded-lg transition-all duration-200 focus:ring-2" 
+                name="address" 
+                placeholder="Or enter address manually" 
+                value={form.address} 
+                onChange={handleChange}
+                style={{ 
+                  backgroundColor: '#fefff4',
+                  borderColor: '#2d3b36',
+                  borderWidth: '1px',
+                  color: '#2d3b36'
+                }}
+              />
+            </div>
+            {coords.lat && (
+              <p className="text-sm mt-2 animate-fadeIn" style={{ color: '#525349' }}>
+                Lat: {coords.lat} — Lng: {coords.lng}
+              </p>
+            )}
+          </div>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.5s' }}>
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Upload Restaurant Image / Logo (optional)</label>
+            <input 
+              type="file" 
+              accept="image/*" 
+              onChange={e => setImageFile(e.target.files[0])}
+              className="w-full px-3 py-2 rounded-lg transition-all duration-200"
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
+          </div>
+
+          <div className="animate-slideIn" style={{ animationDelay: '0.55s' }}>
+            <label className="flex items-center gap-2 text-sm" style={{ color: '#2d3b36' }}>
+              <input type="checkbox" required className="rounded" />
+              I agree to Food Safety Terms
+            </label>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 mt-6 animate-slideIn" style={{ animationDelay: '0.6s' }}>
+            <button 
+              onClick={handleSubmit}
+              className="flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 hover:shadow-lg"
+              style={{ 
+                background: "#2d3b36", 
+                color: "#fefff4", 
+                border: "none" 
+              }}
+            >
+              Register Restaurant
+            </button>
+            <button 
+              type="button" 
+              onClick={() => handleNavigate("/")}
+              className="px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95"
+              style={{
+                backgroundColor: '#f8fee5',
+                color: '#2d3b36',
+                borderColor: '#2d3b36',
+                borderWidth: '1px'
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+        
+        .animate-slideIn {
+          animation: slideIn 0.4s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
     </div>
   );
 }
