@@ -15,7 +15,7 @@ import { LoadingScreen } from "../../components/animations/LoadingScreen";
 import { TextReveal } from "../../components/animations/TextReveal";
 import { ProductCarousel } from "../../components/animations/ProductCarousel";
 import { AnimatedFAQ } from "../../components/animations/AnimatedFAQ";
-
+import { useNavigate } from "react-router-dom";
 import p1 from "../../assets/p1.jpeg";
 import p2 from "../../assets/p2.jpeg";
 import p3 from "../../assets/p3.jpeg";
@@ -30,7 +30,7 @@ export const Desktop = (): JSX.Element => {
   const [showContent, setShowContent] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("NEW ARRIVAL");
-
+ const navigate = useNavigate();
   // Navigation items
 const navItems = [
   { name: "Home", href: "#" },
@@ -181,11 +181,12 @@ const navItems = [
               variant="ghost"
               size="icon"
               className="w-10 h-10 bg-[#f8fee5] rounded-[20px] hover:bg-[#f0f7d4] transition-colors"
+               onClick={() => navigate("/login")}
             >
               <UserIcon className="w-5 h-5" />
             </Button>
               <span className="[font-family:'Inter',Helvetica] font-normal text-[#2d3b36] text-lg lg:text-xl tracking-[-1.00px] ml-2">
-                LOGIN
+                LOGIN 
               </span>
             </div>
 
