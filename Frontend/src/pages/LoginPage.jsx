@@ -34,30 +34,30 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="container">
-      <div className="card" style={{ maxWidth: 560, margin: "0 auto" }}>
-        <h2>Welcome to MealBridge</h2>
-        <p className="small-muted">Login as Restaurant or Volunteer/NGO</p>
+    <div className="fixed inset-0 w-full h-full flex items-center justify-center p-4" style={{ backgroundColor: '#eff5e1' }}>
+      <div className="card w-full rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl" style={{ maxWidth: 560, margin: "0 auto", backgroundColor: '#fefff4', borderColor: '#2d3b36', borderWidth: '1px' }}>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#2d3b36' }}>Welcome to MealBridge</h2>
+        <p className="small-muted text-sm" style={{ color: '#525349' }}>Login as Restaurant or Volunteer/NGO</p>
 
-        <div style={{ display: "flex", gap: 10, marginTop: 12, marginBottom: 10 }}>
+        <div className="flex gap-2 mt-3 mb-2">
           <button
             onClick={() => setUserType("restaurant")}
+            className="flex-1 p-2 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95"
             style={{
-              padding: 10,
-              borderRadius: 8,
-              border: userType === "restaurant" ? "2px solid #0a66c2" : "1px solid #ddd",
-              background: userType === "restaurant" ? "#eaf4ff" : "#fff"
+              border: userType === "restaurant" ? "2px solid #2d3b36" : "1px solid #525349",
+              background: userType === "restaurant" ? "#f8fee5" : "#fefff4",
+              color: '#2d3b36'
             }}
           >
             🍴 Restaurant
           </button>
           <button
             onClick={() => setUserType("volunteer")}
+            className="flex-1 p-2 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95"
             style={{
-              padding: 10,
-              borderRadius: 8,
-              border: userType === "volunteer" ? "2px solid #0a66c2" : "1px solid #ddd",
-              background: userType === "volunteer" ? "#eaf4ff" : "#fff"
+              border: userType === "volunteer" ? "2px solid #2d3b36" : "1px solid #525349",
+              background: userType === "volunteer" ? "#f8fee5" : "#fefff4",
+              color: '#2d3b36'
             }}
           >
             🤝 Volunteer / NGO
@@ -65,27 +65,101 @@ export default function LoginPage() {
         </div>
 
         {!userType ? (
-          <p className="small-muted">Select a role to open the login form</p>
+          <p className="small-muted text-sm mt-2" style={{ color: '#525349' }}>Select a role to open the login form</p>
         ) : (
-          <form onSubmit={handleLogin}>
-            <label>Email</label>
-            <input className="input" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+          <div className="mt-3 animate-slideIn">
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Email</label>
+            <input 
+              className="input w-full px-3 py-2 mb-3 rounded-lg transition-all duration-200 focus:ring-2" 
+              type="email" 
+              value={email} 
+              onChange={e => setEmail(e.target.value)} 
+              required 
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
 
-            <label>Password</label>
-            <input className="input" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+            <label className="block text-sm font-medium mb-1" style={{ color: '#2d3b36' }}>Password</label>
+            <input 
+              className="input w-full px-3 py-2 mb-3 rounded-lg transition-all duration-200 focus:ring-2" 
+              type="password" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)} 
+              required 
+              style={{ 
+                backgroundColor: '#fefff4',
+                borderColor: '#2d3b36',
+                borderWidth: '1px',
+                color: '#2d3b36'
+              }}
+            />
 
-            <button style={{ padding: "10px 16px", borderRadius: 8, background: "#0a66c2", color: "white", border: "none" }}>Login</button>
-          </form>
+            <button 
+              onClick={handleLogin}
+              className="w-full py-2 px-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 hover:shadow-lg"
+              style={{ 
+                background: "#2d3b36", 
+                color: "#fefff4", 
+                border: "none" 
+              }}
+            >
+              Login
+            </button>
+          </div>
         )}
 
-        <div style={{ marginTop: 14 }}>
-          <p className="small-muted">New here?</p>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={() => navigate("/restaurant-signup")}>Register as Restaurant</button>
-            <button onClick={() => navigate("/volunteer-signup")}>Register as Volunteer</button>
+        <div className="mt-3">
+          <p className="small-muted text-sm mb-2" style={{ color: '#525349' }}>New here?</p>
+          <div className="flex gap-2">
+           <button 
+  onClick={() => navigate("/restaurant-signup")}
+  className="flex-1 py-2 px-3 rounded-lg text-sm transition-all duration-200 transform hover:scale-105 active:scale-95"
+  style={{
+    backgroundColor: '#f8fee5',
+    color: '#2d3b36',
+    borderColor: '#2d3b36',
+    borderWidth: '1px'
+  }}
+>
+  Register as Restaurant
+</button>
+<button 
+  onClick={() => navigate("/volunteer-signup")}
+  className="flex-1 py-2 px-3 rounded-lg text-sm transition-all duration-200 transform hover:scale-105 active:scale-95"
+  style={{
+    backgroundColor: '#f8fee5',
+    color: '#2d3b36',
+    borderColor: '#2d3b36',
+    borderWidth: '1px'
+  }}
+>
+  Register as Volunteer
+</button>
+
           </div>
         </div>
       </div>
+      
+      <style>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-slideIn {
+          animation: slideIn 0.3s ease-out;
+        }
+      `}</style>
     </div>
   );
 }
