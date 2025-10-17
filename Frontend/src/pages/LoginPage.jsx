@@ -34,17 +34,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="fixed inset-0 w-full h-full flex items-center justify-center p-4" style={{ backgroundColor: '#eff5e1' }}>
+    <div className="fixed inset-0 w-full h-full flex items-center justify-center p-9" style={{ backgroundColor: '#eff5e1' }}>
       <div className="card w-full rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl" style={{ maxWidth: 560, margin: "0 auto", backgroundColor: '#fefff4', borderColor: '#2d3b36', borderWidth: '1px' }}>
-        <h2 className="text-2xl font-bold mb-2" style={{ color: '#2d3b36' }}>Welcome to MealBridge</h2>
-        <p className="small-muted text-sm" style={{ color: '#525349' }}>Login as Restaurant or Volunteer/NGO</p>
+        <h2 className="text-4xl font-bold   ml-12 mb-2" style={{ color: '#2d3b36' }}>Welcome to MealBridge</h2>
+        <p className="small-muted text-lg " style={{ color: '#525349' }}>Login as Restaurant or Volunteer/NGO</p>
 
         <div className="flex gap-2 mt-3 mb-2">
           <button
             onClick={() => setUserType("restaurant")}
-            className="flex-1 p-2 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95"
+            className="flex-1 p-3 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
             style={{
-              border: userType === "restaurant" ? "2px solid #2d3b36" : "1px solid #525349",
+              border: userType === "restaurant" ? "2px solid #2d3b36" : "2px solid #525349",
               background: userType === "restaurant" ? "#f8fee5" : "#fefff4",
               color: '#2d3b36'
             }}
@@ -53,9 +53,9 @@ export default function LoginPage() {
           </button>
           <button
             onClick={() => setUserType("volunteer")}
-            className="flex-1 p-2 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95"
+            className="flex-1 p-2 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
             style={{
-              border: userType === "volunteer" ? "2px solid #2d3b36" : "1px solid #525349",
+              border: userType === "volunteer" ? "2px solid #2d3b36" : "2px solid #525349",
               background: userType === "volunteer" ? "#f8fee5" : "#fefff4",
               color: '#2d3b36'
             }}
