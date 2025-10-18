@@ -1,0 +1,157 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f6fa;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 230px;
+  background-color: #1e5128;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-title {
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #4e9f3d;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  position: relative;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-popup {
+  position: absolute;
+  right: 40px;
+  top: 60px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.card-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.food-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+.food-img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.9em;
+}
+
+.status.accepted {
+  background-color: #c2f0c2;
+  color: #136b13;
+}
+
+.status.pending {
+  background-color: #ffe9a7;
+  color: #7c6a00;
+}
+
+.food-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+}
+
+.food-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.food-form input,
+.food-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.food-form button {
+  background-color: #1e5128;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.food-form button:hover {
+  background-color: #4e9f3d;
+}
+
+.accept-btn {
+  background-color: #1e5128;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.accept-btn:hover {
+  background-color: #4e9f3d;
+}
