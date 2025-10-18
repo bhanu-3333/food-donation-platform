@@ -6,8 +6,8 @@ import { Desktop } from "./screens/Desktop/Desktop";
 import LoginPage from "./pages/LoginPage";
 import RestaurantSignup from "./pages/RestaurantSignup";
 import VolunteerSignup from "./pages/VolunteerSignup";
-import DashboardRestaurant from "./pages/DashboardRestaurant";
-import DashboardVolunteer from "./pages/DashboardVolunteer";
+import DashboardRestaurant from "./pages/dashboard/DashboardRestaurant";
+import DashboardVolunteer from "./pages/dashboard/DashboardVolunteer";
 
 export default function App() {
   return (
