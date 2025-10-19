@@ -1,68 +1,41 @@
 import express from "express";
-import multer from "multer";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Restaurant from "../models/Restaurant.js";
-import Volunteer from "../models/Volunteer.js";
+import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
+
+import Restaurant from "../models/Restaurant.js";
+import Volunteer from "../models/Volunteer.js";
 
 const router = express.Router();
-
-// Setup multer upload to server/uploads
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uploadDir = path.join(__dirname, "uploads");
+const uploadsDir = path.join(__dirname, "../uploads");
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-// multer storage
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname);
-    const base = file.fieldname + "-" + Date.now();
-    cb(null, base + ext);
-  },
+  destination: (req, file, cb) => cb(null, uploadsDir),
+  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
 });
 const upload = multer({ storage });
 
-// ---------- Restaurant registration ----------
+// register restaurant
 router.post("/register/restaurant", upload.single("image"), async (req, res) => {
   try {
-    const {
-      restaurantName,
-      ownerName,
-      contact,
-      email,
-      password,
-      confirmPassword,
-      foodType,
-      time,
-      address,
-      latitude,
-      longitude
-    } = req.body;
-
-    if (!restaurantName || !ownerName || !contact || !email || !password)
-      return res.status(400).json({ message: "Missing required fields" });
-
-    if (password !== confirmPassword)
-      return res.status(400).json({ message: "Passwords do not match" });
+    const { restaurantName, ownerName, contact, email, password, confirmPassword, foodType, time, latitude, longitude, address } = req.body;
+    if (!restaurantName || !ownerName || !contact || !email || !password) return res.status(400).json({ message: "Missing required fields" });
+    if (password !== confirmPassword) return res.status(400).json({ message: "Passwords must match" });
 
     const existing = await Restaurant.findOne({ email });
-    if (existing) return res.status(400).json({ message: "Email already used" });
+    if (existing) return res.status(400).json({ message: "Email already in use" });
 
     const hashed = await bcrypt.hash(password, 10);
-
-    const newRestaurant = new Restaurant({
-      restaurantName,
-      ownerName,
-      contact,
-      email,
+    const rest = new Restaurant({
+      restaurantName, ownerName, contact, email,
       password: hashed,
-      foodType,
-      availabilityTime: time,
+      foodType, availabilityTime: time,
       location: {
         lat: latitude ? parseFloat(latitude) : undefined,
         lng: longitude ? parseFloat(longitude) : undefined,
@@ -70,54 +43,30 @@ router.post("/register/restaurant", upload.single("image"), async (req, res) => 
       },
       imagePath: req.file ? `/uploads/${req.file.filename}` : undefined
     });
-
-    await newRestaurant.save();
-    res.json({ message: "Restaurant registered successfully" });
+    await rest.save();
+    res.json({ message: "Registered", id: rest._id });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-// ---------- Volunteer / NGO registration ----------
-router.post("/register/volunteer", upload.fields([
-  { name: "registrationDoc", maxCount: 1 },
-  { name: "logo", maxCount: 1 }
-]), async (req, res) => {
+// register volunteer
+router.post("/register/volunteer", upload.fields([{ name: "registrationDoc", maxCount: 1 }, { name: "logo", maxCount: 1 }]), async (req, res) => {
   try {
-    const {
-      ngoName,
-      representativeName,
-      contact,
-      email,
-      password,
-      confirmPassword,
-      volunteersCount,
-      address,
-      latitude,
-      longitude
-    } = req.body;
-
-    if (!ngoName || !representativeName || !contact || !email || !password)
-      return res.status(400).json({ message: "Missing required fields" });
-
-    if (password !== confirmPassword)
-      return res.status(400).json({ message: "Passwords do not match" });
+    const { ngoName, representativeName, contact, email, password, confirmPassword, volunteersCount, latitude, longitude, address } = req.body;
+    if (!ngoName || !representativeName || !contact || !email || !password) return res.status(400).json({ message: "Missing required fields" });
+    if (password !== confirmPassword) return res.status(400).json({ message: "Passwords must match" });
 
     const existing = await Volunteer.findOne({ email });
-    if (existing) return res.status(400).json({ message: "Email already used" });
+    if (existing) return res.status(400).json({ message: "Email already in use" });
 
     const hashed = await bcrypt.hash(password, 10);
-
     const regFile = req.files && req.files.registrationDoc && req.files.registrationDoc[0];
     const logoFile = req.files && req.files.logo && req.files.logo[0];
 
-    const newVolunteer = new Volunteer({
-      ngoName,
-      representativeName,
-      contact,
-      email,
-      password: hashed,
+    const vol = new Volunteer({
+      ngoName, representativeName, contact, email, password: hashed,
       volunteersCount: volunteersCount ? parseInt(volunteersCount) : undefined,
       location: {
         lat: latitude ? parseFloat(latitude) : undefined,
@@ -127,54 +76,45 @@ router.post("/register/volunteer", upload.fields([
       registrationIdPath: regFile ? `/uploads/${regFile.filename}` : undefined,
       logoPath: logoFile ? `/uploads/${logoFile.filename}` : undefined
     });
-
-    await newVolunteer.save();
-    res.json({ message: "Volunteer/NGO registered successfully. Awaiting verification." });
+    await vol.save();
+    res.json({ message: "Registered", id: vol._id });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-// ---------- Login for both ----------
+// login (both types)
 router.post("/login", async (req, res) => {
   try {
-    const { email, password, userType } = req.body;
-    if (!email || !password || !userType)
-      return res.status(400).json({ message: "Missing fields" });
+    const { email, password, role } = req.body; // role: 'restaurant' or 'volunteer'
+    if (!email || !password || !role) return res.status(400).json({ message: "Missing fields" });
 
     let user;
-    if (userType === "restaurant") {
-      user = await Restaurant.findOne({ email });
-    } else {
-      user = await Volunteer.findOne({ email });
-    }
+    if (role === "restaurant") user = await Restaurant.findOne({ email });
+    else user = await Volunteer.findOne({ email });
 
     if (!user) return res.status(400).json({ message: "User not found" });
 
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(400).json({ message: "Invalid credentials" });
 
-    // generate JWT token (optional)
-    const token = jwt.sign(
-      { id: user._id, email: user.email, role: userType },
-      process.env.JWT_SECRET || "secret",
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ id: user._id, role }, process.env.JWT_SECRET || "secret", { expiresIn: "7d" });
 
     res.json({
-      message: "Login successful",
+      message: "Logged in",
       token,
       user: {
         id: user._id,
-        name: userType === "restaurant" ? user.restaurantName : user.ngoName,
+        name: role === "restaurant" ? user.restaurantName : user.ngoName,
         email: user.email,
-        role: userType
+        role,
+        imagePath: role === "restaurant" ? user.imagePath : user.logoPath
       }
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: "Server error" });
   }
 });
 
