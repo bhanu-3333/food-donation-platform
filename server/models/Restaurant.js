@@ -6,14 +6,14 @@ const RestaurantSchema = new mongoose.Schema({
   contact: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  foodType: { type: String },
-  availabilityTime: { type: String },
+  foodType: String,
+  availabilityTime: String,
   location: {
-    lat: { type: Number },
-    lng: { type: Number },
-    address: { type: String }
+    lat: Number,
+    lng: Number,
+    address: String
   },
-  imagePath: { type: String },
+  imagePath: String,
   createdAt: { type: Date, default: Date.now }
 });
 
