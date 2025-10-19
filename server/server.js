@@ -42,3 +42,14 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
+// Serve React frontend in production
+
+if (process.env.NODE_ENV === "production") {
+  const clientDistPath = path.join(__dirname, "../Frontend/dist");
+  app.use(express.static(clientDistPath));
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(clientDistPath, "index.html"));
+});
+
+}
