@@ -35,7 +35,7 @@ app.get("/", (req, res) => res.send("Food donation server running"));
 
 // Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
-  const clientDistPath = path.join(__dirname, "../Frontend/dist");
+const clientDistPath = path.join(__dirname, "dist"); 
   app.use(express.static(clientDistPath));
 
   // Express 5-compatible fallback for all unmatched routes
