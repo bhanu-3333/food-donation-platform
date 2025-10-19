@@ -1,8 +1,6 @@
-// App.tsx
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"
 import { Desktop } from "./screens/Desktop/Desktop";
- // default landing page
 import LoginPage from "./pages/LoginPage";
 import RestaurantSignup from "./pages/RestaurantSignup";
 import VolunteerSignup from "./pages/VolunteerSignup";
@@ -12,17 +10,13 @@ import DashboardVolunteer from "./pages/dashboard/DashboardVolunteer";
 export default function App() {
   return (
     <Routes>
-      {/* Landing page */}
       <Route path="/" element={<Desktop />} />
-
-      {/* Login / Signup */}
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/restaurant-signup" element={<RestaurantSignup />} />
-      <Route path="/volunteer-signup" element={<VolunteerSignup />} />
+    <Route path="/signup/volunteer" element={<VolunteerSignup />} />
+<Route path="/signup/restaurant" element={<RestaurantSignup />} />
 
-      {/* Dashboards */}
-      <Route path="/restaurant-dashboard" element={<DashboardRestaurant />} />
-      <Route path="/volunteer-dashboard" element={<DashboardVolunteer />} />
+  <Route path="/dashboard/restaurant/:id" element={<DashboardRestaurant/>} />
+      <Route path="/dashboard/volunteer/:id" element={<DashboardVolunteer/>} />
     </Routes>
   );
 }
