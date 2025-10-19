@@ -1,32 +1,85 @@
+// client/src/pages/dashboard/volunteer/VolunteerMap.jsx
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import axios from "axios";
+import L from "leaflet";
 
-export default function VolunteerMap(){
-  const [foods, setFoods] = useState([]);
+// custom marker icon
+const foodIcon = new L.Icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/2921/2921822.png",
+  iconSize: [35, 35],
+});
 
-  useEffect(()=> {
-    axios.get("http://localhost:5000/api/food/available").then(res => setFoods(res.data));
+export default function VolunteerMap() {
+  const [foodPosts, setFoodPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/food/all");
+        setFoodPosts(res.data);
+      } catch (err) {
+        console.error("Error fetching foods:", err);
+      }
+    };
+    fetchFoods();
   }, []);
 
-  const center = foods.length ? [foods[0].location.lat || 11.0, foods[0].location.lng || 78.0] : [11.0,78.0];
-
   return (
-    <div className="card">
-      <h2>Map — Available Food</h2>
-      <MapContainer center={center} zoom={13} style={{height:520}}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {foods.map(f => (
-          f.location?.lat && f.location?.lng && (
-            <Marker key={f._id} position={[f.location.lat, f.location.lng]}>
+    <div className="h-screen w-full p-2.5 bg-[#eff5e1]">
+      <h2 
+        className="text-center mb-2.5 text-3xl font-bold text-[#2d3b36]" 
+        style={{ fontFamily: 'Georgia, serif' }}
+      >
+        📍 Restaurant Food Locations
+      </h2>
+      <MapContainer
+        center={[20.5937, 78.9629]} // India center
+        zoom={5}
+        style={{ height: "90%", width: "100%", borderRadius: "10px" }}
+      >
+        <TileLayer
+          attribution='&copy; OpenStreetMap contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {foodPosts.map((food) =>
+          food.location && food.location.lat && food.location.lng ? (
+            <Marker
+              key={food._id}
+              position={[food.location.lat, food.location.lng]}
+              icon={foodIcon}
+            >
               <Popup>
-                <strong>{f.foodName}</strong><br/>
-                {f.description}<br/>
-                <img src={`http://localhost:5000${f.imagePath}`} alt="" style={{width:150}} />
+                <div className="text-center">
+                  <img
+                    src={`http://localhost:5000${food.imagePath}`}
+                    alt="food"
+                    className="w-25 rounded-lg mb-2 mx-auto"
+                  />
+                  <h3 className="text-lg font-bold text-[#2d3b36] mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+                    {food.foodName}
+                  </h3>
+                  <p className="text-[#525349] mb-1 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    🍴 <strong className="text-[#2d3b36]">Type:</strong> {food.foodType}
+                  </p>
+                  <p className="text-[#525349] mb-1 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    🏠 <strong className="text-[#2d3b36]">Restaurant:</strong> {food.restaurantName}
+                  </p>
+                  <p className="text-[#525349] mb-1 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    📍 <strong className="text-[#2d3b36]">Address:</strong> {food.location.address || "Not available"}
+                  </p>
+                  <p className="text-[#525349] mb-1 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    ⏰ <strong className="text-[#2d3b36]">Time:</strong> {food.time || "N/A"}
+                  </p>
+                  <p className="text-[#525349] text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    📦 <strong className="text-[#2d3b36]">Status:</strong> {food.status}
+                  </p>
+                </div>
               </Popup>
             </Marker>
-          )
-        ))}
+          ) : null
+        )}
       </MapContainer>
     </div>
   );
