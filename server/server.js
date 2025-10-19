@@ -1,5 +1,5 @@
-import express, { Router } from "express";
-import cors from "cors"; // ✅ Make sure cors is imported
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import path from "path";
@@ -30,22 +30,18 @@ app.use("/api/auth", authRoutes);
 app.use("/api/food", foodRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
-// Test route
-app.get("/", (req, res) => res.send("Food donation server running"));
-
+// Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
-  const clientDistPath = path.join(__dirname, "dist");
+  const clientDistPath = path.join(__dirname, "../Frontend/dist"); // <-- your build folder
   app.use(express.static(clientDistPath));
 
-  const router = Router();
-  router.use((req, res) => {
+  // ✅ catch-all route for React
+  app.get("*", (req, res) => {
     res.sendFile(path.join(clientDistPath, "index.html"));
   });
-  app.use(router);
 }
 
-
-// Database connection and server start
+// Connect to DB and start server
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
