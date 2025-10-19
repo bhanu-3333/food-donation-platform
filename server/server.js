@@ -33,18 +33,17 @@ app.use("/api/dashboard", dashboardRoutes);
 // Test route
 app.get("/", (req, res) => res.send("Food donation server running"));
 
-// Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
-const clientDistPath = path.join(__dirname, "dist"); 
+  const clientDistPath = path.join(__dirname, "dist");
   app.use(express.static(clientDistPath));
 
-  // Express 5-compatible fallback for all unmatched routes
   const router = Router();
   router.use((req, res) => {
     res.sendFile(path.join(clientDistPath, "index.html"));
   });
   app.use(router);
 }
+
 
 // Database connection and server start
 mongoose
