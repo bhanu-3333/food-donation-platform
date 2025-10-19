@@ -6,14 +6,14 @@ const VolunteerSchema = new mongoose.Schema({
   contact: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  registrationIdPath: { type: String }, // file path to uploaded registration doc
-  volunteersCount: { type: Number },
+  registrationIdPath: String,
+  volunteersCount: Number,
   location: {
-    lat: { type: Number },
-    lng: { type: Number },
-    address: { type: String }
+    lat: Number,
+    lng: Number,
+    address: String
   },
-  logoPath: { type: String },
+  logoPath: String,
   verified: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });
