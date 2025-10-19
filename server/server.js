@@ -1,33 +1,44 @@
 import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
 import cors from "cors";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 import path from "path";
-import authRoutes from "./routes/authRoutes.js";
 import { fileURLToPath } from "url";
+import fs from "fs";
+
+import authRoutes from "./routes/authRoutes.js";
+import foodRoutes from "./routes/foodRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 dotenv.config();
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// serve uploaded files
+// ensure uploads dir exists
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-const PORT = process.env.PORT || 5000;
+// serve uploads statically
+app.use("/uploads", express.static(uploadsDir));
+
+// routes
+app.use("/api/auth", authRoutes);
+app.use("/api/food", foodRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
+app.get("/", (req, res) => res.send("Food donation server running"));
 
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
+  .then(() => {
+    console.log("MongoDB connected");
+    const port = process.env.PORT || 5000;
+    app.listen(port, () => console.log("Server listening on", port));
+  })
   .catch((err) => {
     console.error("MongoDB connection error:", err);
-    process.exit(1);
   });
-
-app.use("/api/auth", authRoutes);
-
-app.get("/", (req, res) => res.send("Food Donation Server Running"));
-
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
