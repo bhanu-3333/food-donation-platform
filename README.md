@@ -6,7 +6,8 @@ A MERN stack application that connects **restaurants** with **volunteers** to re
 
 ## 🖼️ Project Preview
 
-![Banner](./src/assets/banner.png)
+![Banner](https://github.com/bhanu-3333/food-donation-platform/raw/main/Frontend/src/assets/banner.png)
+
 
 ---
 
@@ -55,16 +56,23 @@ git clone https://github.com/bhanu-3333/food-donation-platform.git
 2️⃣ Setup the Backend
 
 cd food-donation-platform/server
+
 npm install
+
 npm start
 
 Make sure MongoDB is running locally or provide your Atlas URI in .env:
+
 MONGO_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_secret_key
+
 PORT=5000
 
 3️⃣ Setup the Frontend
 
 cd ../client
+
 npm install
+
 npm run dev
