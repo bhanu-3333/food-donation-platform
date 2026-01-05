@@ -22,7 +22,7 @@ export default function RestaurantSignup(){
       data.append("latitude", coords.lat);
       data.append("longitude", coords.lng);
       if(image) data.append("image", image);
-      const res = await axios.post("http://localhost:5000/api/auth/register/restaurant", data);
+      const res = await axios.post("https://food-donation-platform-4.onrender.com/restaurant", data);
       alert("Registered. Login now.");
       navigate("/");
     }catch(err){
