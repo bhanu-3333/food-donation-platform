@@ -8,7 +8,7 @@ export default function RestaurantMyPosts({ restaurantId }) {
   useEffect(() => {
     if (!restaurantId) return;
     axios
-      .get(`http://localhost:5000/api/food/restaurant/${restaurantId}`)
+      .get(`https://food-donation-platform-4.onrender.com/restaurant/${restaurantId}`)
       .then((res) => setPosts(res.data))
       .catch((err) => console.error(err));
   }, [restaurantId]);
