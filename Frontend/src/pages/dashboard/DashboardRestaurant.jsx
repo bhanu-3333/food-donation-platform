@@ -19,7 +19,7 @@ export default function DashboardRestaurant() {
   useEffect(() => {
     if (!id) return;
     axios
-      .get(`http://localhost:5000/api/dashboard/restaurant/${id}`)
+      .get(`https://food-donation-platform-4.onrender.com/restaurant/${id}`)
       .then((res) => setProfile(res.data))
       .catch(() => {});
   }, [id]);
