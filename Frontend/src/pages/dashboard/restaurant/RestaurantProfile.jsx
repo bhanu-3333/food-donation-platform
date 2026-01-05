@@ -7,7 +7,7 @@ export default function RestaurantProfile({ restaurantId }) {
   useEffect(() => {
     if (!restaurantId) return;
     axios
-      .get(`http://localhost:5000/api/dashboard/restaurant/${restaurantId}`)
+      .get(`https://food-donation-platform-4.onrender.com/restaurant/${restaurantId}`)
       .then((res) => setProfile(res.data))
       .catch(() => {});
   }, [restaurantId]);
