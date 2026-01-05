@@ -7,7 +7,7 @@ export default function VolunteerProfile({ volunteerId }) {
   useEffect(() => {
     if (!volunteerId) return;
     axios
-      .get(`http://localhost:5000/api/dashboard/volunteer/${volunteerId}`)
+      .get(`https://food-donation-platform-4.onrender.com/volunteer/${volunteerId}`)
       .then((res) => setProfile(res.data))
       .catch(() => {});
   }, [volunteerId]);
