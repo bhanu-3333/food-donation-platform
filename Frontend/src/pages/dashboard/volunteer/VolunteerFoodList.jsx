@@ -6,16 +6,18 @@ export default function VolunteerFoodList({ volunteerId }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/food/all")
+      .get("https://food-donation-platform-4.onrender.com/food/all")
       .then((res) => setFoods(res.data))
       .catch(() => {});
   }, []);
 
   const accept = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/food/accept/${id}`, {
-        volunteerId,
-      });
+    await axios.post(
+  `https://food-donation-platform-4.onrender.com/food/accept/${id}`,
+  { volunteerId }
+);
+
       alert("Accepted");
       setFoods((prev) => prev.filter((f) => f._id !== id));
     } catch (err) {
