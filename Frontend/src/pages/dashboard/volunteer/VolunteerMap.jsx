@@ -17,7 +17,7 @@ export default function VolunteerMap() {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/food/all");
+        const res = await axios.get("https://food-donation-platform-4.onrender.com/food/all");
         setFoodPosts(res.data);
       } catch (err) {
         console.error("Error fetching foods:", err);
